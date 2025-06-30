@@ -1,8 +1,15 @@
-<section class="container">
-  <h2>Cadastrar</h2>
-  <form action="/register" method="POST">
-    <input type="email" name="email" placeholder="Seu e-mail" required>
-    <input type="password" name="password" placeholder="Sua senha" required>
+<div class="form-container">
+  <h2>Cadastro</h2>
+
+  {{#if error}}
+    <p class="error-message">{{error}}</p>
+  {{/if}}
+
+  <form method="post" action="/register">
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="password" placeholder="Senha" required>
+    <input type="password" name="confirm_password" placeholder="Confirme a senha" required>
     <button type="submit">Cadastrar</button>
   </form>
-</section>
+  <p>Já tem conta? <a href="/login">Faça login</a></p>
+</div>

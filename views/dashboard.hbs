@@ -1,2 +1,13 @@
-<h2>Bem-vindo à sua área protegida!</h2>
-<a href="/logout">Sair</a>
+<div class="protected-container">
+  <h2>Área Protegida</h2>
+  <p>Bem-vindo!</p>
+
+  <h3>Usuários cadastrados:</h3>
+  <ul>
+    {{#each users}}
+      <li>{{this.email}}</li>
+    {{/each}}
+  </ul>
+
+  <a class="btn-primary" href="/logout">Sair</a>
+</div>

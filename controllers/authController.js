@@ -16,9 +16,14 @@ exports.postLogin = async (req, res) => {
   res.redirect('/dashboard');
 };
 
-exports.getDashboard = (req, res) => {
+exports.getDashboard = async (req, res) => {
   if (!req.session.userId) return res.redirect('/login');
-  res.render('dashboard');
+  try {
+    const users = await User.find({}, 'email').lean();; // busca todos os usuários, pegando só o email
+    res.render('dashboard', { users });
+  } catch (err) {
+    res.send('Erro ao buscar usuários: ' + err.message);
+  }
 };
 
 exports.logout = (req, res) => {
@@ -37,7 +42,13 @@ exports.getRegister = (req, res) => {
 };
 
 exports.postRegister = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, confirm_password } = req.body;
+
+  // Verifica se as senhas são iguais
+  if (password !== confirm_password) {
+    return res.render('register', { error: 'As senhas não conferem. Tente novamente.' });
+  }
+
   try {
     const user = new User({ email, password });
     await user.save();
