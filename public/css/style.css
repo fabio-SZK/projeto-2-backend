@@ -16,7 +16,7 @@ body, html {
   text-align: center;
 }
 
-.btn-primary {
+.btn-primary, .btn-secondary {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
@@ -28,8 +28,14 @@ body, html {
   transition: background 0.3s;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-secondary:hover {
   background-color: #e6e6e6;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* espaço entre os botões */
 }
 
 .form-container {
